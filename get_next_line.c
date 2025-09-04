@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 05:47:38 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/04 07:16:23 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/04 08:58:27 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,33 @@ char	*get_next_line(int fd)
 	char	*result;
 	
 	result = malloc(1000);
+	if(!result)
+		return ((void *) NULL);
 	index = 0;
+	length = 0;
 	
 	buffer = malloc(BUFFER_SIZE);
+	if(!buffer)
+		return ((void *) NULL);
 	length = read(fd, buffer, BUFFER_SIZE);
 	if(!length)
-		return (NULL);
+	{
+		free(buffer);
+		free(result);
+		return ((void *) NULL);
+	}
+		
 	while(length)
 	{
 		ft_strlcpy(&result[index], buffer, length+1);
 		index += length;
 		if(ft_strchr(buffer, '\n'))
+		{
+			free(buffer);
 			return (result);
+		}
 		length = read(fd, buffer, BUFFER_SIZE);
 	}
+	free(buffer);
 	return (result);
 }
