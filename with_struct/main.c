@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 06:04:51 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/05 23:59:46 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/08 03:20:10 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ int main(void)
 	int	fd;
 	char *result;
 
-	fd = open("main.c", O_RDONLY);
+	fd = open("abc", O_RDONLY);
 	
-	result = get_next_line(fd);
 	
 	// int i = 0;
 	// while(*result && i < 500)
@@ -34,10 +33,14 @@ int main(void)
 	// 	result++;
 	// 	i++;
 	// }
-	printf("%s\n", result);
-	
-	free(result);
+	result = ft_strdup("1");
+	int i = 0;
+	while(*result)
+	{
+		result = get_next_line(fd);
+		printf("%s", result);
+		free(result);
+	}
 	close(fd);
 	return (0);
-
 }

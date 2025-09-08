@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 05:47:42 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/05 20:36:46 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/06 01:58:56 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 size_t	ft_strlen(const char *s)
 {
 	size_t	len;
-
 	len = 0;
 	while (*s)
 	{
@@ -29,6 +28,8 @@ char	*ft_strdup(const char *s)
 {
 	size_t	i;
 	char	*ptr;
+	if(!s)
+		return (NULL);
 
 	i = 0;
 	ptr = malloc(ft_strlen(s) + 1);

@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 05:51:22 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/05 20:44:26 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/08 02:48:19 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 300
+#  define BUFFER_SIZE 5
 # endif
 
 typedef struct t_snl
