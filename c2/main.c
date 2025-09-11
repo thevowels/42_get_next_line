@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:13:44 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/11 01:53:40 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:24:02 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(void)
 		result = get_next_line(fd);
 		if(result)
 		{
-			printf("%s\n", result);
+			printf("%s", result);
 			free(result);
 		}
 		else
