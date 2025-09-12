@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:10:21 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/12 21:30:08 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:53:40 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static void	ft_updatedata(t_data *data, char *buffer)
 	char	*tmp;
 	size_t	l;
 
-	l = data->s_len;
-	if ((l + BUFFER_SIZE) >= data->m_len - 1)
+	if ((data->s_len + BUFFER_SIZE) >= data->m_len - 1)
 	{
 		tmp = ft_strjoin(data, buffer);
 		free(data->str);
@@ -32,21 +31,21 @@ static void	ft_updatedata(t_data *data, char *buffer)
 			data->str[data->s_len + l] = buffer[l];
 			l++;
 		}
-		data->str[data->s_len+l] = 0;
+		data->str[data->s_len + l] = 0;
 	}
 	while (*buffer)
 	{
 		data->s_len += 1;
-		if (*buffer == '\n')
+		if (*(buffer++) == '\n')
 			data->s_ncount += 1;
-		buffer++;
 	}
 }
 
-void	do_read(int fd, t_data *data)
+static void	do_read(int fd, t_data *data)
 {
 	char	*buffer;
 	ssize_t	byte_read;
+
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	byte_read = 1;
 	while (byte_read > 0)
@@ -65,12 +64,13 @@ void	do_read(int fd, t_data *data)
 	free(buffer);
 }
 
-char	*ft_getline(t_data *data)
+static char	*ft_getline(t_data *data)
 {
 	char	*line;
 	int		i;
 
 	i = 0;
+	data->s_ncount -= 1;
 	if (!*(data->str))
 		return (NULL);
 	while (data->str[i] && data->str[i] != '\n')
@@ -91,7 +91,7 @@ char	*ft_getline(t_data *data)
 	return (line);
 }
 
-t_data	*ft_clean(t_data *data)
+static t_data	*ft_clean(t_data *data)
 {
 	char	*tmp;
 	int		i;
@@ -127,14 +127,10 @@ char	*get_next_line(int fd)
 		data = init_data();
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
 		return (NULL);
-	// if(!data->s_ncount)
-	// {
-	// 	do_read(fd, data);
-	// }
-	// else{
-	// 	data->s_ncount -= 1;
-	// }
-	do_read(fd, data);
+	if (!data->s_ncount)
+	{
+		do_read(fd, data);
+	}
 	line = ft_getline(data);
 	data = ft_clean(data);
 	return (line);

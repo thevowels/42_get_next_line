@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 01:03:38 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/11 21:06:21 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:45:22 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
-
 
 # include <fcntl.h>
 # include <stdio.h>

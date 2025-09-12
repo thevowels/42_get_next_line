@@ -6,16 +6,14 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/12 21:26:54 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:44:33 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// char	*ft_strjoin(char const *s1, size_t m_len, char const *s2)
 char	*ft_strjoin(t_data *data, char const *s2)
 {
-	printf("size: %zu\n", data->m_len);
 	char	*res;
 	size_t	i;
 	size_t	j;
