@@ -11,10 +11,10 @@ int main(void)
 	fd = open("abc", O_RDONLY);
 	while(1)
 	{
-		result = get_next_line(fd);
+		result = get_next_line(0);
 		if(result)
 		{
-			printf("%s\n", result);
+			printf("%s", result);
 			free(result);
 		}
 		else

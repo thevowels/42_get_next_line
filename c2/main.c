@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 11:13:44 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/11 21:24:02 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:15:09 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int main(void)
 {
 	int fd;
 	char * result;
-
-	printf("Buffer size %i\n", BUFFER_SIZE);
 	
 	fd = open("abc", O_RDONLY);
 	while(1)

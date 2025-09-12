@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:10:21 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/11 21:31:53 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:30:08 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,13 @@ char	*get_next_line(int fd)
 		data = init_data();
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
 		return (NULL);
+	// if(!data->s_ncount)
+	// {
+	// 	do_read(fd, data);
+	// }
+	// else{
+	// 	data->s_ncount -= 1;
+	// }
 	do_read(fd, data);
 	line = ft_getline(data);
 	data = ft_clean(data);
