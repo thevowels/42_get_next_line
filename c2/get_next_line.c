@@ -106,8 +106,8 @@ t_data	*ft_clean(t_data *data)
 		free(data);
 		return (NULL);
 	}
+	tmp = malloc(sizeof(char) * (data->m_len));
 	data->s_len -= (i + 1);
-	tmp = malloc(sizeof(char) * (data->m_len * BUFFER_SIZE));
 	i++;
 	j = 0;
 	while (data->str[i])
