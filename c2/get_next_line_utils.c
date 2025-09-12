@@ -19,7 +19,8 @@ char	*ft_strjoin(t_data *data, char const *s2)
 	size_t	i;
 	size_t	j;
 
-	res = malloc(sizeof(char) * ((BUFFER_SIZE  * data->m_len) + 1));
+	data->m_len *= 2;
+	res = malloc(sizeof(char) * (data->m_len));
 	if (!res || !data->str || !s2)
 		return (NULL);
 	i = 0;
@@ -69,7 +70,7 @@ t_data	*init_data(void)
 	t_data	*data;
 	char	*str;
 
-	str = malloc(sizeof(char) * ((BUFFER_SIZE * 2) + 1));
+	str = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!str)
 		return (NULL);
 	*str = 0;
@@ -79,6 +80,6 @@ t_data	*init_data(void)
 	data->str = str;
 	data->s_len = 0;
 	data->s_ncount = 0;
-	data->m_len = 2;
+	data->m_len = BUFFER_SIZE + 1;
 	return (data);
 }

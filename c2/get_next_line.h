@@ -17,10 +17,12 @@
 #  define BUFFER_SIZE 42
 # endif
 
+
 # include <fcntl.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
+
 typedef struct s_data
 {
 	char	*str;
@@ -31,7 +33,7 @@ typedef struct s_data
 
 size_t		ft_strlen(const char *str);
 char		*ft_strchr(const char *s, int c);
-char	*ft_strjoin(t_data *data, char const *s2);
+char		*ft_strjoin(t_data *data, char const *s2);
 t_data		*init_data(void);
 char		*get_next_line(int fd);
 

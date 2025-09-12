@@ -18,10 +18,9 @@ static void	ft_updatedata(t_data *data, char *buffer)
 	size_t	l;
 
 	l = data->s_len;
-	if ((l + BUFFER_SIZE) > (BUFFER_SIZE * data->m_len - 1))
+	if ((l + BUFFER_SIZE) >= data->m_len - 1)
 	{
 		tmp = ft_strjoin(data, buffer);
-		data->m_len +=1;
 		free(data->str);
 		data->str = tmp;
 	}
@@ -33,7 +32,7 @@ static void	ft_updatedata(t_data *data, char *buffer)
 			data->str[data->s_len + l] = buffer[l];
 			l++;
 		}
-		buffer[l] = 0;
+		data->str[data->s_len+l] = 0;
 	}
 	while (*buffer)
 	{
@@ -108,7 +107,6 @@ t_data	*ft_clean(t_data *data)
 		return (NULL);
 	}
 	data->s_len -= (i + 1);
-	data->m_len = (data->s_len / BUFFER_SIZE) + 1;
 	tmp = malloc(sizeof(char) * (data->m_len * BUFFER_SIZE));
 	i++;
 	j = 0;
