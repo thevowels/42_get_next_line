@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:10:21 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/12 21:53:40 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/13 00:30:39 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ char	*get_next_line(int fd)
 
 	if (!data)
 		data = init_data();
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	if (!data->s_ncount)
 	{
