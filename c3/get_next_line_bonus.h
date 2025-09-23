@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 01:03:38 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/12 23:11:15 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:22:16 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,25 @@
 
 typedef struct s_data
 {
-	char	*str;
-	size_t	s_ncount;
-	size_t	s_len;
-	size_t	m_len;
-}			t_data;
+	char			*str;
+	size_t			s_ncount;
+	size_t			s_len;
+	size_t			m_len;
+	int				fd;
+	struct s_data	*next;
+}					t_data;
 
-size_t		ft_strlen(const char *str);
-char		*ft_strchr(const char *s, int c);
-char		*ft_strjoin(t_data *data, char const *s2);
-t_data		*init_data(void);
-char		*get_next_line(int fd);
+/*
+
+	TODO: update the init_data function		Done
+		  upddate import to bonus.h			Done
+		  update get_next_line function to handle multiple fds.
+		  
+*/
+size_t				ft_strlen(const char *str);
+char				*ft_strchr(const char *s, int c);
+char				*ft_strjoin(t_data *data, char const *s2);
+t_data				*init_data(int fd);
+char				*get_next_line(int fd);
 
 #endif

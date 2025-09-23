@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/22 23:23:11 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:24:04 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strjoin(t_data *data, char const *s2)
 {
@@ -64,7 +64,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-t_data	*init_data(void)
+t_data	*init_data(int fd)
 {
 	t_data	*data;
 	char	*str;
@@ -77,8 +77,10 @@ t_data	*init_data(void)
 	if (!data)
 		return (NULL);
 	data->str = str;
+	data->fd = fd;
 	data->s_len = 0;
 	data->s_ncount = 0;
 	data->m_len = BUFFER_SIZE + 1;
+	data->next = NULL;
 	return (data);
 }
