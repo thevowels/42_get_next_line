@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:10:21 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/23 19:46:51 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:07:26 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 static void	ft_updatedata(t_data *data, char *buffer, size_t byte_read)
 {
@@ -54,7 +54,7 @@ static void	do_read(int fd, t_data *data, char *buffer)
 			return ;
 		}
 		buffer[byte_read] = 0;
-		ft_updatedata(data, buffer, (size_t)byte_read);
+		ft_updatedata(data, buffer,(size_t) byte_read);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
@@ -101,7 +101,7 @@ static t_data	*ft_clean(t_data *data)
 	{
 		free(data->str);
 		free(data);
-		if (tmp)
+		if(tmp)
 			free(tmp);
 		return (NULL);
 	}
@@ -118,27 +118,23 @@ static t_data	*ft_clean(t_data *data)
 
 char	*get_next_line(int fd)
 {
-	static t_data	*data = 0;
-	t_data			*tmp;
+	static t_data	*data;
 	char			*line;
 	char			*buffer;
 
+	if (!data)
+		data = init_data();
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	if (!data)
-		data = init_data(fd);
-	tmp = execute_ll(data, fd);
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
+	if(!buffer)
 		return (NULL);
-	if (!tmp->s_ncount)
+	if (!data->s_ncount)
 	{
 		do_read(fd, data, buffer);
 	}
 	free(buffer);
-	line = ft_getline(tmp);
-	tmp = ft_clean(tmp);
-	if (!tmp)
-		execute_ll(data, -1);
+	line = ft_getline(data);
+	data = ft_clean(data);
 	return (line);
 }

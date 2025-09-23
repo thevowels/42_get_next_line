@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:10:21 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/23 19:46:51 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/23 20:10:43 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,27 +118,23 @@ static t_data	*ft_clean(t_data *data)
 
 char	*get_next_line(int fd)
 {
-	static t_data	*data = 0;
-	t_data			*tmp;
+	static t_data	*data[__INT_MAX__];
 	char			*line;
 	char			*buffer;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	if (!data)
-		data = init_data(fd);
-	tmp = execute_ll(data, fd);
+	if (!data[fd])
+		data[fd] = init_data();
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	if (!tmp->s_ncount)
+	if (!data[fd]->s_ncount)
 	{
-		do_read(fd, data, buffer);
+		do_read(fd, data[fd], buffer);
 	}
 	free(buffer);
-	line = ft_getline(tmp);
-	tmp = ft_clean(tmp);
-	if (!tmp)
-		execute_ll(data, -1);
+	line = ft_getline(data[fd]);
+	data[fd] = ft_clean(data[fd]);
 	return (line);
 }

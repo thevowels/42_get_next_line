@@ -6,27 +6,18 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/23 19:47:27 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/23 19:55:02 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-t_data *execute_ll(t_data *data, int fd)
-{	
-	
-	if(fd == -1)
-	{
-
-	}
-}
 
 char	*ft_strjoin(t_data *data, char const *s2)
 {
 	char	*res;
 	size_t	i;
 	size_t	j;
-	
+
 	data->m_len *= 2;
 	res = malloc(sizeof(char) * (data->m_len));
 	if (!res || !data->str || !s2)
@@ -73,7 +64,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-t_data	*init_data(int fd)
+t_data	*init_data(void)
 {
 	t_data	*data;
 	char	*str;
@@ -86,10 +77,8 @@ t_data	*init_data(int fd)
 	if (!data)
 		return (NULL);
 	data->str = str;
-	data->fd = fd;
 	data->s_len = 0;
 	data->s_ncount = 0;
 	data->m_len = BUFFER_SIZE + 1;
-	data->next = NULL;
 	return (data);
 }
