@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:10:21 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/22 23:22:31 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:07:26 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ static char	*ft_getline(t_data *data)
 	while (data->str[i] && data->str[i] != '\n')
 		i++;
 	line = malloc(sizeof(char) * (i + 2));
-	line[i + 1] = 0;
 	if (!line)
 		return (NULL);
+	line[i + 1] = 0;
 	i = 0;
 	while (data->str[i] && data->str[i] != '\n')
 	{
