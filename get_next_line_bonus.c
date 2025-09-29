@@ -6,18 +6,18 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:10:21 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/23 20:10:43 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/26 01:32:21 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static void	ft_updatedata(t_data *data, char *buffer, size_t byte_read)
+static void	ft_updatedata(t_data *data, char *buffer)
 {
 	char	*tmp;
 	size_t	l;
 
-	if ((data->s_len + byte_read) >= data->m_len - 1)
+	if ((data->s_len + BUFFER_SIZE) >= data->m_len - 1)
 	{
 		tmp = ft_strjoin(data, buffer);
 		free(data->str);
@@ -41,23 +41,29 @@ static void	ft_updatedata(t_data *data, char *buffer, size_t byte_read)
 	}
 }
 
-static void	do_read(int fd, t_data *data, char *buffer)
+static void	do_read(int fd, t_data *data)
 {
+	char	*buffer;
 	ssize_t	byte_read;
 
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return ;
 	byte_read = 1;
 	while (byte_read > 0)
 	{
 		byte_read = read(fd, buffer, BUFFER_SIZE);
 		if (byte_read == -1)
 		{
+			free(buffer);
 			return ;
 		}
 		buffer[byte_read] = 0;
-		ft_updatedata(data, buffer, (size_t)byte_read);
+		ft_updatedata(data, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
+	free(buffer);
 }
 
 static char	*ft_getline(t_data *data)
@@ -99,10 +105,10 @@ static t_data	*ft_clean(t_data *data)
 	tmp = malloc(sizeof(char) * (data->m_len));
 	if (!data->str[i] || !tmp)
 	{
-		free(data->str);
-		free(data);
 		if (tmp)
 			free(tmp);
+		free(data->str);
+		free(data);
 		return (NULL);
 	}
 	data->s_len -= (i + 1);
@@ -118,22 +124,17 @@ static t_data	*ft_clean(t_data *data)
 
 char	*get_next_line(int fd)
 {
-	static t_data	*data[__INT_MAX__];
+	static t_data	*data[2048];
 	char			*line;
-	char			*buffer;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1 || fd > 2047)
 		return (NULL);
 	if (!data[fd])
 		data[fd] = init_data();
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return (NULL);
 	if (!data[fd]->s_ncount)
 	{
-		do_read(fd, data[fd], buffer);
+		do_read(fd, data[fd]);
 	}
-	free(buffer);
 	line = ft_getline(data[fd]);
 	data[fd] = ft_clean(data[fd]);
 	return (line);

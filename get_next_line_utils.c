@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/23 15:23:51 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/23 22:50:45 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strjoin(t_data *data, char const *s2)
 	char	*res;
 	size_t	i;
 	size_t	j;
-	
+
 	data->m_len *= 2;
 	res = malloc(sizeof(char) * (data->m_len));
 	if (!res || !data->str || !s2)
