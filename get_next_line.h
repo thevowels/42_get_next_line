@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 01:03:38 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/12 23:11:15 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/30 07:05:41 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 typedef struct s_data
 {
 	char	*str;
+	char	buffer[BUFFER_SIZE + 1];
 	size_t	s_ncount;
 	size_t	s_len;
 	size_t	m_len;
