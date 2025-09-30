@@ -1,43 +1,22 @@
-// asdf
-#include "get_next_line_bonus.h"
-#include "stdio.h"
-int main(void)
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include "get_next_line.h"
+int	main(void)
 {
-	char *result;
+	int		fd;
+	char	*line;
 
-	int fd1;
-	int fd2;
-
-	fd1 = open("main.c", O_RDONLY);
-
-	// result = get_next_line(fd1);
-	// printf("%s",result);
-	// free(result);
-
-
-	while(1)
+	fd = open("./filenlpp", O_RDONLY);
+	while (1)
 	{
-		result = get_next_line(fd1);
-		if(result)
-		{
-			printf("%s", result);
-			free(result);
-		}
-		else
-			break;
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		//printf("%s", line);
+		free(line);
 	}
-	while(1)
-	{
-		result = get_next_line(42);
-		if(result)
-		{
-			printf("%s", result);
-			free(result);
-		}
-		else
-			break;
-	}
-
-	close(fd1);
-	close(fd2);
+	close(fd);
+	return (0);
 }
