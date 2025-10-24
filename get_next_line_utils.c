@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/10/24 07:31:58 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/10/24 07:40:48 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,14 @@ static void	ft_memmove(char *dest, char *src, size_t n)
 char	*ft_strjoin(t_data *data, char const *s2)
 {
 	char	*res;
-	size_t	i;
-	size_t	j;
 
 	data->m_len *= 2;
 	res = malloc(sizeof(char) * (data->m_len));
 	if (!res || !data->str || !s2)
 		return (NULL);
 	ft_memmove(res, data->str, data->s_len);
-	i = data->s_len;
-	j = 0;
-	while (s2[j])
-	{
-		res[i + j] = s2[j];
-		j++;
-	}
-	res[i + j] = 0;
+	ft_memmove(res + data->s_len, (char *)s2, ft_strlen(s2));
+	res[data->s_len + ft_strlen(s2)] = 0;
 	return (res);
 }
 
