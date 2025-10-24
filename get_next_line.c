@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:10:21 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/30 07:13:39 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/26 01:32:32 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,27 @@ static void	ft_updatedata(t_data *data, char *buffer)
 
 static void	do_read(int fd, t_data *data)
 {
+	char	*buffer;
 	ssize_t	byte_read;
 
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return ;
 	byte_read = 1;
 	while (byte_read > 0)
 	{
-		byte_read = read(fd, data->buffer, BUFFER_SIZE);
+		byte_read = read(fd, buffer, BUFFER_SIZE);
 		if (byte_read == -1)
 		{
+			free(buffer);
 			return ;
 		}
-		data->buffer[byte_read] = 0;
-		ft_updatedata(data, data->buffer);
-		if (ft_strchr(data->buffer, '\n'))
+		buffer[byte_read] = 0;
+		ft_updatedata(data, buffer);
+		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
+	free(buffer);
 }
 
 static char	*ft_getline(t_data *data)

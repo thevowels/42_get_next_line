@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/30 07:45:55 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/09/23 22:50:45 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_data	*init_data(void)
 	t_data	*data;
 	char	*str;
 
-	str = malloc(sizeof(char) * (100 + BUFFER_SIZE + 1));
+	str = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!str)
 		return (NULL);
 	*str = 0;
@@ -79,6 +79,6 @@ t_data	*init_data(void)
 	data->str = str;
 	data->s_len = 0;
 	data->s_ncount = 0;
-	data->m_len = 100 + BUFFER_SIZE + 1;
+	data->m_len = BUFFER_SIZE + 1;
 	return (data);
 }
