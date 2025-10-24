@@ -6,11 +6,35 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/09/23 22:48:36 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/10/24 07:32:00 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+
+static void	ft_memmove(char *dest, char *src, size_t n)
+{
+	size_t				i;
+	size_t				j;
+	unsigned long long	*tmp_dest;
+	unsigned long long	*tmp_src;
+
+	i = 0;
+	j = (n / sizeof(unsigned long long));
+	tmp_dest = (unsigned long long *)dest;
+	tmp_src = (unsigned long long *)src;
+	while (i < j)
+	{
+		tmp_dest[i] = tmp_src[i];
+		i++;
+	}
+	i = j * sizeof(unsigned long long);
+	while (i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+}
 
 char	*ft_strjoin(t_data *data, char const *s2)
 {
@@ -22,12 +46,8 @@ char	*ft_strjoin(t_data *data, char const *s2)
 	res = malloc(sizeof(char) * (data->m_len));
 	if (!res || !data->str || !s2)
 		return (NULL);
-	i = 0;
-	while (data->str[i])
-	{
-		res[i] = data->str[i];
-		i++;
-	}
+	ft_memmove(res, data->str, data->s_len);
+	i = data->s_len;
 	j = 0;
 	while (s2[j])
 	{
