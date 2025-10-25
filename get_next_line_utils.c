@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/10/24 07:40:48 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/10/26 04:20:18 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ static void	ft_memmove(char *dest, char *src, size_t n)
 {
 	size_t				i;
 	size_t				j;
-	unsigned long long	*tmp_dest;
-	unsigned long long	*tmp_src;
+	size_t	*tmp_dest;
+	size_t	*tmp_src;
 
 	i = 0;
-	j = (n / sizeof(unsigned long long));
-	tmp_dest = (unsigned long long *)dest;
-	tmp_src = (unsigned long long *)src;
+	j = (n / sizeof(size_t));
+	tmp_dest = (size_t *)dest;
+	tmp_src = (size_t *)src;
 	while (i < j)
 	{
 		tmp_dest[i] = tmp_src[i];
 		i++;
 	}
-	i = j * sizeof(unsigned long long);
+	i = j * sizeof(size_t);
 	while (i < n)
 	{
 		dest[i] = src[i];

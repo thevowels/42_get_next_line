@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 07:22:08 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/10/24 07:27:02 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/10/26 04:24:48 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ int	main(void)
 	char	*str;
 	int		fd;
 
-	fd = open("get_next_line.c", O_RDONLY);
+	fd = open("input", O_RDONLY);
 	while (1)
 	{
 		str = get_next_line(fd);
 		if (!str)
 			break ;
-		printf("%s", str);
 		free(str);
 	}
 }
