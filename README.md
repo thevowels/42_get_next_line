@@ -74,7 +74,7 @@ cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 main.c get_next_line_bonus.c get_next
 #include <stdio.h>
 
 int main(void) {
-    int fd = open("input.txt", O_RDONLY);
+    int fd = open("input", O_RDONLY);
     char *line;
     
     while ((line = get_next_line(fd)) != NULL) {
@@ -168,7 +168,7 @@ This implementation follows all 42 School requirements:
 
 1. **Clone and test:**
    ```bash
-   git clone [your-repo-url]
+   git clone https://github.com/thevowels/42_get_next_line.git
    cd 42_get_next_line
    cc main.c get_next_line.c get_next_line_utils.c -o gnl
    ./gnl
