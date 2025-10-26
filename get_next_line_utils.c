@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 23:55:30 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2025/10/26 04:20:18 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2025/10/26 12:00:04 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	ft_memmove(char *dest, char *src, size_t n)
 {
-	size_t				i;
-	size_t				j;
+	size_t	i;
+	size_t	j;
 	size_t	*tmp_dest;
 	size_t	*tmp_src;
 
